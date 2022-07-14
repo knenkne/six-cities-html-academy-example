@@ -127,4 +127,4 @@ const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
   </div>
 );
 
-export { Main };
+export default Main;

@@ -62,4 +62,4 @@ const Login = (): JSX.Element => (
   </div>
 );
 
-export { Login };
+export default Login;

@@ -163,4 +163,4 @@ const Favorites = (): JSX.Element => (
   </div>
 );
 
-export { Favorites };
+export default Favorites;

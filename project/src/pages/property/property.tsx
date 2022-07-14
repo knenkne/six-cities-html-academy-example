@@ -327,4 +327,4 @@ const Property = (): JSX.Element => (
   </div>
 );
 
-export { Property };
+export default Property;
