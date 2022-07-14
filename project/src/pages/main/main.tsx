@@ -1,10 +1,10 @@
 import { Card } from '../../components/card/card';
 
-type MainPageProps = {
+type MainProps = {
     offersCount: number
 }
 
-const MainPage = ({ offersCount = 0 }: MainPageProps): JSX.Element => (
+const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -127,4 +127,4 @@ const MainPage = ({ offersCount = 0 }: MainPageProps): JSX.Element => (
   </div>
 );
 
-export { MainPage };
+export { Main };
