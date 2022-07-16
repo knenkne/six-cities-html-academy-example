@@ -1,10 +1,12 @@
-import { Card } from '../../components/card/card';
+import type { Offer } from '../../types/types';
+
+import CardList from '../../components/card-list/card-list';
 
 type MainProps = {
-    offersCount: number
+  offers: Offer[]
 }
 
-const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
+const Main = ({ offers }: MainProps): JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -87,7 +89,7 @@ const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -114,9 +116,7 @@ const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
                 </li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {Array.from({ length: offersCount }, () => <Card />)}
-            </div>
+            <CardList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
