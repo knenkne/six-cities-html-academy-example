@@ -1,10 +1,13 @@
+import type { Offer } from '../../types/types';
+
 import { Card } from '../../components/card/card';
 
 type MainProps = {
+    offers: Offer[],
     offersCount: number
 }
 
-const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
+const Main = ({ offers, offersCount = 0 }: MainProps): JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -115,7 +118,7 @@ const Main = ({ offersCount = 0 }: MainProps): JSX.Element => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {Array.from({ length: offersCount }, () => <Card />)}
+              {offers.map((offer) => <Card key={offer.id} {...offer} />)}
             </div>
           </section>
           <div className="cities__right-section">
