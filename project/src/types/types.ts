@@ -1,5 +1,9 @@
+import { cities } from '../const';
+
+export type CityName = typeof cities[number];
+
 export type City = {
-    name: string;
+    name: CityName
 }
 
 export type Offer = {
