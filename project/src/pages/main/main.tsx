@@ -1,6 +1,6 @@
 import type { Offer } from '../../types/types';
 
-import { Card } from '../../components/card/card';
+import CardList from '../../components/card-list/card-list';
 
 type MainProps = {
     offers: Offer[],
@@ -117,9 +117,7 @@ const Main = ({ offers, offersCount = 0 }: MainProps): JSX.Element => (
                 </li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {offers.map((offer) => <Card key={offer.id} {...offer} />)}
-            </div>
+            <CardList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
