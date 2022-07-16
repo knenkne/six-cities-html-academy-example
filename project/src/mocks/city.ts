@@ -1,7 +1,5 @@
-import type { City } from '../types/types';
+import { cities } from '../const';
 
-const city: City = {
-  name: 'Amsterdam'
-};
+const city = cities[0];
 
 export default city;

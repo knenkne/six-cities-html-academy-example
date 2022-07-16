@@ -1,7 +1,7 @@
 
 import { createReducer } from '@reduxjs/toolkit';
 
-import { setCityAction } from './action';
+import { setCity} from './action';
 import city from '../mocks/city';
 import offers from '../mocks/offers';
 
@@ -12,7 +12,7 @@ const initialState = {
 
 export const updateStore = createReducer(initialState, (builder) => {
   builder
-    .addCase(setCityAction, (state, action) => {
+    .addCase(setCity, (state, action) => {
       state.city = action.payload;
     });
 });

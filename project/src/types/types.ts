@@ -2,10 +2,6 @@ import { cities } from '../const';
 
 export type CityName = typeof cities[number];
 
-export type City = {
-    name: CityName
-}
-
 export type Offer = {
     id: number;
     price: number;
@@ -13,5 +9,8 @@ export type Offer = {
     title: string;
     isPremium: boolean;
     isFavorite: boolean;
+    city: {
+        name: CityName
+    };
     type: 'apartment' | 'room' | 'house' | 'hotel';
 };

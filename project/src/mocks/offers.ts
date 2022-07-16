@@ -8,6 +8,9 @@ const offers: Offer[] = [
     title: 'Beautiful & luxurious apartment at great location',
     isPremium: true,
     isFavorite: false,
+    city: {
+      name: 'Amsterdam'
+    },
     type: 'apartment'
   },
   {
@@ -17,6 +20,9 @@ const offers: Offer[] = [
     title: 'A apartment at great location beautiful',
     isPremium: false,
     isFavorite: false,
+    city: {
+      name: 'Paris'
+    },
     type: 'room'
   },
   {
@@ -26,6 +32,9 @@ const offers: Offer[] = [
     title: 'Great location apartment at great location',
     isPremium: true,
     isFavorite: true,
+    city: {
+      name: 'Cologne'
+    },
     type: 'house'
   },
   {
@@ -35,6 +44,9 @@ const offers: Offer[] = [
     title: 'Luxurious & beautiful apartment at great location',
     isPremium: false,
     isFavorite: true,
+    city: {
+      name: 'Hamburg'
+    },
     type: 'hotel'
   },
 ];
