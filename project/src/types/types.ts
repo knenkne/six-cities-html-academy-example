@@ -1,3 +1,7 @@
+export type City = {
+    name: string;
+}
+
 export type Offer = {
     id: number;
     price: number;
