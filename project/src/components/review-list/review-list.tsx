@@ -9,7 +9,11 @@ type ReviewListProps = {
 
 const ReviewList = ({ reviews }: ReviewListProps) => {
   if (reviews.length === 0) {
-    return null;
+    return (
+      <section className="property__reviews reviews">
+        <Form />
+      </section>
+    );
   }
 
   return (
