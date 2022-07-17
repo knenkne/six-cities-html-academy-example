@@ -10,10 +10,8 @@ const useMap = (
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
-    let instance = map;
-
     if (mapRef.current !== null && map === null) {
-      instance = new Map(mapRef.current, {
+      const instance = new Map(mapRef.current, {
         center: {
           lat: city.location.latitude,
           lng: city.location.longitude,
@@ -33,14 +31,7 @@ const useMap = (
 
       setMap(instance);
     }
-
-    return () => {
-      if (instance) {
-        instance.remove();
-      }
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapRef, city]);
+  }, [mapRef, map, city]);
 
   return map;
 };

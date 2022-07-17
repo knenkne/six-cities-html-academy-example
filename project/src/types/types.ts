@@ -35,6 +35,7 @@ export type Offer = {
     title: string
     isPremium: boolean
     isFavorite: boolean
+    city: City
     location: Location
     type: 'apartment' | 'room' | 'house' | 'hotel'
 }

@@ -25,6 +25,8 @@ const Map = ({ city, locations, place = 'cities' }: MapProps): JSX.Element => {
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       locations.forEach(({ latitude: lat, longitude: lng }) => {
         const marker = new Marker({
@@ -35,9 +37,23 @@ const Map = ({ city, locations, place = 'cities' }: MapProps): JSX.Element => {
         marker
           .setIcon(defaultCustomIcon)
           .addTo(map);
+
+        markers.push(marker);
+      });
+
+      map.fitBounds([[city.location.latitude, city.location.longitude]], {
+        maxZoom: city.location.zoom
       });
     }
-  }, [map, locations]);
+
+    return () => {
+      if (map) {
+        markers.forEach((marker) => {
+          map.removeLayer(marker);
+        });
+      }
+    };
+  }, [map, city, locations]);
 
   return <section className={`${place}__map map`} ref={mapRef} />;
 };
