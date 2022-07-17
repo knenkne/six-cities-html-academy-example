@@ -27,7 +27,7 @@ const Card = ({
 
   return (
     <article
-      className={`${place}__card place-card}`}
+      className={`${place}__card place-card`}
       onMouseMove={handleMouseMove}
       onMouseLeave={onMouseLeave}
     >
