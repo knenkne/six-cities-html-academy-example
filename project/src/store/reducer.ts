@@ -1,25 +1,31 @@
 
 import { createReducer } from '@reduxjs/toolkit';
 
-import type { CityName, Offer } from '../types/types';
+import type { City, Offer } from '../types/types';
 
 import { setCity, setOffers } from './action';
-import { cities } from '../const';
+import { cities, CityCenter } from '../const';
 
 type State = {
-    city: CityName,
+    city: City,
     offers: Offer[]
 }
 
 const initialState: State = {
-  city: cities[0],
+  city: {
+    name: cities[0],
+    location: CityCenter[cities[0]]
+  },
   offers: []
 };
 
 export const updateStore = createReducer(initialState, (builder) => {
   builder
     .addCase(setCity, (state, action) => {
-      state.city = action.payload;
+      state.city = {
+        name: action.payload,
+        location: CityCenter[action.payload]
+      };
     })
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload;

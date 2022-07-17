@@ -1,3 +1,4 @@
+import { CityCenter } from '../const';
 import type { Offer } from '../types/types';
 
 const offers: Offer[] = [
@@ -8,8 +9,10 @@ const offers: Offer[] = [
     title: 'Beautiful & luxurious apartment at great location',
     isPremium: true,
     isFavorite: false,
+    location: CityCenter['Amsterdam'],
     city: {
-      name: 'Amsterdam'
+      name: 'Amsterdam',
+      location: CityCenter['Amsterdam'],
     },
     type: 'apartment'
   },
@@ -20,8 +23,10 @@ const offers: Offer[] = [
     title: 'A apartment at great location beautiful',
     isPremium: false,
     isFavorite: false,
+    location: CityCenter['Paris'],
     city: {
-      name: 'Paris'
+      name: 'Paris',
+      location: CityCenter['Paris']
     },
     type: 'room'
   },
@@ -32,8 +37,10 @@ const offers: Offer[] = [
     title: 'Great location apartment at great location',
     isPremium: true,
     isFavorite: true,
+    location: CityCenter['Cologne'],
     city: {
-      name: 'Cologne'
+      name: 'Cologne',
+      location: CityCenter['Cologne']
     },
     type: 'house'
   },
@@ -44,8 +51,10 @@ const offers: Offer[] = [
     title: 'Luxurious & beautiful apartment at great location',
     isPremium: false,
     isFavorite: true,
+    location: CityCenter['Hamburg'],
     city: {
-      name: 'Hamburg'
+      name: 'Hamburg',
+      location: CityCenter['Hamburg']
     },
     type: 'hotel'
   },

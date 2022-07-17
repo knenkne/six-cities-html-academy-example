@@ -1,5 +1,5 @@
 import CardList from '../../components/card-list/card-list';
-import { CitiesList } from '../../components/cities-list/cities-list';
+import CitiesList from '../../components/cities-list/cities-list';
 
 const Main = (): JSX.Element => (
   <div className="page page--gray page--main">
@@ -52,9 +52,6 @@ const Main = (): JSX.Element => (
       <div className="cities">
         <div className="cities__places-container container">
           <CardList />
-          <div className="cities__right-section">
-            <section className="cities__map map"></section>
-          </div>
         </div>
       </div>
     </main>

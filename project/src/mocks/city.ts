@@ -1,7 +1,10 @@
-import type { CityName } from '../types/types';
+import type { City } from '../types/types';
 
-import { cities } from '../const';
+import { cities, CityCenter } from '../const';
 
-const city: CityName = cities[0];
+const city: City = {
+  name: cities[0],
+  location: CityCenter[cities[0]]
+};
 
 export default city;
