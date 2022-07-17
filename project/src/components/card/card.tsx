@@ -1,6 +1,7 @@
 import type { Offer } from '../../types/types';
 
-import { AppRoute, MAX_PERCENT_STARS_WIDTH, STARS_COUNT } from '../../const';
+import { AppRoute } from '../../const';
+import { getStarsWidth } from '../../utils';
 
 type CardProps = Offer & {
   onMouseMove: (id: number) => void;
@@ -65,7 +66,7 @@ const Card = ({
           <div className="place-card__stars rating__stars">
             <span
               style={{
-                width: `${(MAX_PERCENT_STARS_WIDTH * rating) / STARS_COUNT}%`,
+                width: getStarsWidth(rating),
               }}
             >
             </span>
