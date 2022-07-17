@@ -168,7 +168,7 @@ const Property = ({ city, nearbyOffers, reviews }: PropertyProps): JSX.Element =
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {nearbyOffers.map((offer) => <Card key={offer.id} {...offer} />)}
+            {nearbyOffers.map((offer) => <Card key={offer.id} {...offer} place="near-places" />)}
           </div>
         </section>
       </div>

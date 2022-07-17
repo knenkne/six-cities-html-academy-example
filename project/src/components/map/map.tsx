@@ -1,4 +1,4 @@
-import {useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
 
 import type { City, Location } from '../../types/types';
