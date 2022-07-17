@@ -1,12 +1,15 @@
-import type { Comment } from '../../types/types';
+import type { City, Offer, Comment } from '../../types/types';
 
 import ReviewList from '../../components/review-list/review-list';
+import Map from '../../components/map/map';
 
 type PropertyProps = {
+  city: City;
+  nearbyOffers: Offer[];
   reviews: Comment[];
 }
 
-const Property = ({ reviews }: PropertyProps): JSX.Element => (
+const Property = ({ city, nearbyOffers, reviews }: PropertyProps): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -158,7 +161,7 @@ const Property = ({ reviews }: PropertyProps): JSX.Element => (
             <ReviewList reviews={reviews} />
           </div>
         </div>
-        <section className="property__map map" />
+        <Map city={city} locations={nearbyOffers.map((offer) => offer.location)} place="property" />
       </section>
       <div className="container">
         <section className="near-places places">

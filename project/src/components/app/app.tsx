@@ -21,7 +21,7 @@ const App = ({ city, offers, reviews }: AppProps): JSX.Element => (
     <Routes>
       <Route index element={<Main city={city} offers={offers} />} />
       <Route path={AppRoute.Login} element={<Login />} />
-      <Route path={`${AppRoute.Property}/:id`} element={<Property reviews={reviews} />} />
+      <Route path={`${AppRoute.Property}/:id`} element={<Property city={city} nearbyOffers={offers} reviews={reviews} />} />
       <Route
         path={AppRoute.Favorites}
         element={
