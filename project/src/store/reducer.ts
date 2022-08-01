@@ -19,7 +19,7 @@ const initialState: State = {
   offers: []
 };
 
-export const updateStore = createReducer(initialState, (builder) => {
+export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setCity, (state, action) => {
       state.city = {
