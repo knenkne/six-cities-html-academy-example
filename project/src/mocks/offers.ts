@@ -8,7 +8,11 @@ const offers: Offer[] = [
     title: 'Beautiful & luxurious apartment at great location',
     isPremium: true,
     isFavorite: false,
-    type: 'apartment'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'apartment',
+    city: {
+      name: 'Amsterdam'
+    }
   },
   {
     id: 2,
@@ -17,7 +21,11 @@ const offers: Offer[] = [
     title: 'A apartment at great location beautiful',
     isPremium: false,
     isFavorite: false,
-    type: 'room'
+    previewImage: 'img/apartment-02.jpg',
+    type: 'room',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 3,
@@ -26,7 +34,11 @@ const offers: Offer[] = [
     title: 'Great location apartment at great location',
     isPremium: true,
     isFavorite: true,
-    type: 'house'
+    previewImage: 'img/apartment-03.jpg',
+    type: 'house',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 4,
@@ -35,7 +47,11 @@ const offers: Offer[] = [
     title: 'Luxurious & beautiful apartment at great location',
     isPremium: false,
     isFavorite: true,
-    type: 'hotel'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'hotel',
+    city: {
+      name: 'Amsterdam'
+    }
   },
 ];
 

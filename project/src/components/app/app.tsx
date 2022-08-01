@@ -23,9 +23,9 @@ const App = ({ offers }: AppProps): JSX.Element => (
       <Route path={AppRoute.Favorites}
         element={
           <PrivateRoute
-            authorizationStatus={AuthorizationStatus.NoAuth}
+            authorizationStatus={AuthorizationStatus.Auth}
           >
-            <Favorites />
+            <Favorites offers={offers} />
           </PrivateRoute>
         }
       />

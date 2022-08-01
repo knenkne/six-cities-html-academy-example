@@ -9,14 +9,15 @@ type CardListProps = {
 };
 
 const CardList = ({ offers }: CardListProps): JSX.Element => {
+  // Переменная activeOffer понадобится позже
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
-  const handleMouseMove = (id: number) => {
+  const handleCardMouseMove = (id: number) => {
     setActiveOffer(id);
   };
 
-  const handleMouseLeave = () => {
+  const handleCardMouseLeave = () => {
     setActiveOffer(null);
   };
 
@@ -26,8 +27,8 @@ const CardList = ({ offers }: CardListProps): JSX.Element => {
         <Card
           key={offer.id}
           {...offer}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleCardMouseMove}
+          onMouseLeave={handleCardMouseLeave}
         />
       ))}
     </div>

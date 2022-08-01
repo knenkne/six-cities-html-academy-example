@@ -5,5 +5,9 @@ export type Offer = {
     title: string
     isPremium: boolean
     isFavorite: boolean
-    type: 'apartment' | 'room' | 'house' | 'hotel'
+    previewImage: string
+    type: 'apartment' | 'room' | 'house' | 'hotel',
+    city: {
+        name: string
+    }
 }
