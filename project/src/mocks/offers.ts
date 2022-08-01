@@ -13,7 +13,11 @@ const offers: Offer[] = [
       longitude: 4.85309666406198,
       zoom: 1
     },
-    type: 'apartment'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'apartment',
+    city: {
+      name: 'Amsterdam'
+    }
   },
   {
     id: 2,
@@ -27,7 +31,11 @@ const offers: Offer[] = [
       longitude: 4.85309666406198,
       zoom: 1
     },
-    type: 'room'
+    previewImage: 'img/apartment-02.jpg',
+    type: 'room',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 3,
@@ -41,7 +49,11 @@ const offers: Offer[] = [
       longitude: 4.929309666406198,
       zoom: 1
     },
-    type: 'house'
+    previewImage: 'img/apartment-03.jpg',
+    type: 'house',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 4,
@@ -55,7 +67,11 @@ const offers: Offer[] = [
       longitude: 4.939309666406198,
       zoom: 1
     },
-    type: 'hotel'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'hotel',
+    city: {
+      name: 'Amsterdam'
+    }
   },
 ];
 

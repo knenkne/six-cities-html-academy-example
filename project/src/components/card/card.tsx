@@ -6,7 +6,7 @@ import { getStarsWidth } from '../../utils';
 type CardProps = Offer & {
   onMouseMove?: (id: number) => void;
   onMouseLeave?: () => void;
-  place?: 'cities' | 'near-places'
+  place?: 'cities' | 'favorites' | 'near-places';
 };
 
 const Card = ({
@@ -16,6 +16,7 @@ const Card = ({
   title,
   isPremium,
   isFavorite,
+  previewImage,
   type,
   place = 'cities',
   onMouseMove = () => void 0,
@@ -40,7 +41,7 @@ const Card = ({
         <a href="#">
           <img
             className="place-card__image"
-            src="img/apartment-01.jpg"
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
