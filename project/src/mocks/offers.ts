@@ -14,7 +14,8 @@ const offers: Offer[] = [
       name: 'Amsterdam',
       location: CityCenter['Amsterdam'],
     },
-    type: 'apartment'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'apartment',
   },
   {
     id: 2,
@@ -28,7 +29,8 @@ const offers: Offer[] = [
       name: 'Paris',
       location: CityCenter['Paris']
     },
-    type: 'room'
+    previewImage: 'img/apartment-02.jpg',
+    type: 'room',
   },
   {
     id: 3,
@@ -42,7 +44,8 @@ const offers: Offer[] = [
       name: 'Cologne',
       location: CityCenter['Cologne']
     },
-    type: 'house'
+    previewImage: 'img/apartment-03.jpg',
+    type: 'house',
   },
   {
     id: 4,
@@ -56,7 +59,8 @@ const offers: Offer[] = [
       name: 'Hamburg',
       location: CityCenter['Hamburg']
     },
-    type: 'hotel'
+    previewImage: 'img/apartment-01.jpg',
+    type: 'hotel',
   },
 ];
 
