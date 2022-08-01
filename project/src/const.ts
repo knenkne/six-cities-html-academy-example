@@ -1,4 +1,4 @@
-import { Location, CityName } from './types/types';
+import { Offer, Location, CityName, Sort } from './types/types';
 
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as const;
@@ -8,7 +8,6 @@ export const MAX_PERCENT_STARS_WIDTH = 100;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
-
 
 export enum AppRoute {
     Root = '/',
@@ -22,6 +21,22 @@ export enum AuthorizationStatus {
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
 }
+
+export enum Sorting {
+  POPULAR = 'Popular',
+  PRICE_INCREASE = 'Price: low to high',
+  PRICE_DECREASE = 'Price: high to low',
+  TOP_RATED = 'Top rated first',
+}
+
+export const Comprator: {
+  [key in Sort]: (a: Offer, b: Offer) => number
+} = {
+  POPULAR: () => 0,
+  PRICE_INCREASE: (a, b) => a.price - b.price,
+  PRICE_DECREASE: (a, b) => b.price - a.price,
+  TOP_RATED: (a, b) => b.rating - a.rating,
+};
 
 type CityLocation = {
   [key in CityName]: Location

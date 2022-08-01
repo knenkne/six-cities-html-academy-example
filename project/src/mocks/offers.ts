@@ -18,6 +18,21 @@ const offers: Offer[] = [
     type: 'apartment',
   },
   {
+    id: 11,
+    price: 400,
+    rating: 5.0,
+    title: 'Beautiful & luxurious apartment at great location',
+    isPremium: true,
+    isFavorite: false,
+    location: CityCenter['Amsterdam'],
+    city: {
+      name: 'Amsterdam',
+      location: CityCenter['Amsterdam'],
+    },
+    previewImage: 'img/apartment-01.jpg',
+    type: 'apartment',
+  },
+  {
     id: 2,
     price: 20,
     rating: 3.4,
