@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 import { getStarsWidth } from '../../utils';
 
 type CardProps = Offer & {
-  onMouseMove?: (id: number) => void;
+  onMouseEnter?: (id: number) => void;
   onMouseLeave?: () => void;
   place?: 'cities' | 'favorites' | 'near-places';
 };
@@ -19,17 +19,17 @@ const Card = ({
   previewImage,
   type,
   place = 'cities',
-  onMouseMove = () => void 0,
+  onMouseEnter = () => void 0,
   onMouseLeave = () => void 0,
 }: CardProps): JSX.Element => {
-  const handleMouseMove = () => {
-    onMouseMove(id);
+  const handleMouseEnter = () => {
+    onMouseEnter(id);
   };
 
   return (
     <article
       className={`${place}__card place-card`}
-      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {isPremium && (

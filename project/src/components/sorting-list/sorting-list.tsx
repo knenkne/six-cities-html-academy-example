@@ -1,12 +1,13 @@
-import type { Sort } from '../../types/types';
+import type { SortName } from '../../types/types';
 
 import { useState } from 'react';
 
 import { Sorting } from '../../const';
 
+
 type SortingListProps = {
-    onChange: (name: Sort) => void;
-    activeSorting: Sort;
+  onChange: (name: SortName) => void;
+  activeSorting: SortName;
 };
 
 const SortingList = ({
@@ -19,7 +20,7 @@ const SortingList = ({
     setIsOpened(!isOpened);
   };
 
-  const handleSortItemClick = (name: Sort) => {
+  const handleSortItemClick = (name: SortName) => {
     setIsOpened(false);
     onChange(name);
   };
@@ -39,14 +40,14 @@ const SortingList = ({
       </span>
       {isOpened && (
         <ul className="places__options places__options--custom places__options--opened">
-          {(Object.keys(Sorting) as Sort[]).map((name) => (
+          {(Object.entries(Sorting) as [SortName, Sorting][]).map(([name, title]) => (
             <li
               key={name}
               className={`places__option${name === activeSorting ? ' places__option--active' : ''}`}
               onClick={() => handleSortItemClick(name)}
               tabIndex={0}
             >
-              {Sorting[name]}
+              {title}
             </li>
           ))}
         </ul>

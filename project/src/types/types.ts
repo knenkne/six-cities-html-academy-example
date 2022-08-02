@@ -1,7 +1,7 @@
 import { cities, Sorting } from '../const';
 
 export type CityName = typeof cities[number];
-export type Sort = keyof typeof Sorting;
+export type SortName = keyof typeof Sorting;
 
 export type Location = {
     latitude: number;

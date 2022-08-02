@@ -1,4 +1,4 @@
-import { Offer, Location, CityName, Sort } from './types/types';
+import { Offer, Location, CityName, SortName } from './types/types';
 
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as const;
@@ -23,19 +23,19 @@ export enum AuthorizationStatus {
 }
 
 export enum Sorting {
-  POPULAR = 'Popular',
-  PRICE_INCREASE = 'Price: low to high',
-  PRICE_DECREASE = 'Price: high to low',
-  TOP_RATED = 'Top rated first',
+  Popular = 'Popular',
+  PriceIncrease = 'Price: low to high',
+  PriceDecrease = 'Price: high to low',
+  TopRated = 'Top rated first',
 }
 
 export const Comprator: {
-  [key in Sort]: (a: Offer, b: Offer) => number
+  [key in SortName]: (a: Offer, b: Offer) => number
 } = {
-  POPULAR: () => 0,
-  PRICE_INCREASE: (a, b) => a.price - b.price,
-  PRICE_DECREASE: (a, b) => b.price - a.price,
-  TOP_RATED: (a, b) => b.rating - a.rating,
+  Popular: () => 0,
+  PriceIncrease: (a, b) => a.price - b.price,
+  PriceDecrease: (a, b) => b.price - a.price,
+  TopRated: (a, b) => b.rating - a.rating,
 };
 
 type CityLocation = {

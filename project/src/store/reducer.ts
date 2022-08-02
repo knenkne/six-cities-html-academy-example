@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import type { City, Offer, Sort } from '../types/types';
+import type { City, Offer, SortName } from '../types/types';
 
 import { setCity, setOffers, setSorting } from './action';
 import { cities, CityCenter } from '../const';
@@ -8,7 +8,7 @@ import { cities, CityCenter } from '../const';
 type State = {
   city: City;
   offers: Offer[];
-  sorting: Sort;
+  sorting: SortName;
 };
 
 const initialState: State = {
@@ -17,7 +17,7 @@ const initialState: State = {
     location: CityCenter[cities[0]],
   },
   offers: [],
-  sorting: 'POPULAR',
+  sorting: 'Popular',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
