@@ -1,13 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { createAPI } from '../api';
 import { reducer } from './reducer';
-import { setOffers } from './action';
-import offers from '../mocks/offers';
+import { fetchOffers } from './action';
 
+const api = createAPI();
 const store = configureStore({
-  reducer
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+      extraArgument: api,
+    },
+  }),
 });
 
-store.dispatch(setOffers(offers));
+store.dispatch(fetchOffers());
 
 export default store;

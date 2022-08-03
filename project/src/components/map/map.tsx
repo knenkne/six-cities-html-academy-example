@@ -4,7 +4,7 @@ import { Icon, Marker } from 'leaflet';
 import type { City, Location } from '../../types/types';
 
 import useMap from '../../hooks/useMap';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { CityLocation, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -48,9 +48,8 @@ const Map = ({ city, locations, activeOffer, place = 'cities' }: MapProps): JSX.
         markers.push(marker);
       });
 
-      map.fitBounds([[city.location.latitude, city.location.longitude]], {
-        maxZoom: city.location.zoom
-      });
+      const { latitude: lat, longitude: lng, zoom} = CityLocation[city.name];
+      map.setView({ lat, lng }, zoom);
     }
 
     return () => {
