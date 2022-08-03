@@ -9,6 +9,5 @@ export const createAPI = (): AxiosInstance => {
     timeout: REQUEST_TIMEOUT,
   });
 
-
   return api;
 };
