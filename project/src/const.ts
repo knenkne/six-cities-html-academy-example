@@ -38,11 +38,7 @@ export const Comprator: {
   TopRated: (a, b) => b.rating - a.rating,
 };
 
-type CityLocation = {
-  [key in CityName]: Location
-}
-
-export const CityCenter: CityLocation = {
+export const CityLocation: { [key in CityName]: Location } = {
   'Paris': {
     latitude: 48.85661,
     longitude: 2.351499,
