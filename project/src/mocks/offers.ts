@@ -1,4 +1,4 @@
-import { CityCenter } from '../const';
+import { CityLocation } from '../const';
 import type { Offer } from '../types/types';
 
 const offers: Offer[] = [
@@ -9,10 +9,10 @@ const offers: Offer[] = [
     title: 'Beautiful & luxurious apartment at great location',
     isPremium: true,
     isFavorite: false,
-    location: CityCenter['Amsterdam'],
+    location: CityLocation['Amsterdam'],
     city: {
       name: 'Amsterdam',
-      location: CityCenter['Amsterdam'],
+      location: CityLocation['Amsterdam'],
     },
     previewImage: 'img/apartment-01.jpg',
     type: 'apartment',
@@ -24,10 +24,10 @@ const offers: Offer[] = [
     title: 'Beautiful & luxurious apartment at great location',
     isPremium: true,
     isFavorite: false,
-    location: CityCenter['Amsterdam'],
+    location: CityLocation['Amsterdam'],
     city: {
       name: 'Amsterdam',
-      location: CityCenter['Amsterdam'],
+      location: CityLocation['Amsterdam'],
     },
     previewImage: 'img/apartment-01.jpg',
     type: 'apartment',
@@ -39,10 +39,10 @@ const offers: Offer[] = [
     title: 'A apartment at great location beautiful',
     isPremium: false,
     isFavorite: false,
-    location: CityCenter['Paris'],
+    location: CityLocation['Paris'],
     city: {
       name: 'Paris',
-      location: CityCenter['Paris']
+      location: CityLocation['Paris']
     },
     previewImage: 'img/apartment-02.jpg',
     type: 'room',
@@ -54,10 +54,10 @@ const offers: Offer[] = [
     title: 'Great location apartment at great location',
     isPremium: true,
     isFavorite: true,
-    location: CityCenter['Cologne'],
+    location: CityLocation['Cologne'],
     city: {
       name: 'Cologne',
-      location: CityCenter['Cologne']
+      location: CityLocation['Cologne']
     },
     previewImage: 'img/apartment-03.jpg',
     type: 'house',
@@ -69,10 +69,10 @@ const offers: Offer[] = [
     title: 'Luxurious & beautiful apartment at great location',
     isPremium: false,
     isFavorite: true,
-    location: CityCenter['Hamburg'],
+    location: CityLocation['Hamburg'],
     city: {
       name: 'Hamburg',
-      location: CityCenter['Hamburg']
+      location: CityLocation['Hamburg']
     },
     previewImage: 'img/apartment-01.jpg',
     type: 'hotel',

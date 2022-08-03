@@ -42,7 +42,7 @@ type CityLocation = {
   [key in CityName]: Location
 }
 
-export const CityCenter: CityLocation = {
+export const CityLocation: CityLocation = {
   'Paris': {
     latitude: 48.85661,
     longitude: 2.351499,
