@@ -4,7 +4,7 @@ import { Icon, Marker } from 'leaflet';
 import type { City, Location } from '../../types/types';
 
 import useMap from '../../hooks/useMap';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT, CityLocation } from '../../const';
+import { CityLocation, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 import 'leaflet/dist/leaflet.css';
 
