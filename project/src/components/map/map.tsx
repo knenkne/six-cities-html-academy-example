@@ -48,8 +48,8 @@ const Map = ({ city, locations, activeOffer, place = 'cities' }: MapProps): JSX.
         markers.push(marker);
       });
 
-      const { latitude: lat, longitude: lng, zoom} = CityLocation[city.name];
-      map.setView({ lat, lng }, zoom);
+      const { latitude: lat, longitude: lng,} = CityLocation[city.name];
+      map.setView({ lat, lng });
     }
 
     return () => {
