@@ -11,8 +11,7 @@ type State = {
   isOffersLoading: boolean;
   sorting: SortName;
   authorizationStatus: AuthorizationStatus;
-  // TODO: Pick<User>
-  user: string;
+  user: User['email'];
 };
 
 const initialState: State = {

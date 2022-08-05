@@ -16,12 +16,13 @@ export const Action = {
 export const setCity = createAction<CityName>(Action.SET_CITY);
 export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
-export const fetchOffers = createAsyncThunk(Action.FETCH_OFFERS, async (_, thunkAPI) => {
-  const axios = thunkAPI.extra as AxiosInstance;
-  const { data } = await axios.get<Offer[]>(ApiRoute.Offers);
+export const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance }>(
+  Action.FETCH_OFFERS,
+  async (_, { extra: api }) => {
+    const { data } = await api.get<Offer[]>(ApiRoute.Offers);
 
-  return data;
-});
+    return data;
+  });
 
 export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: AxiosInstance }>(
   Action.FETCH_USER_STATUS,
@@ -31,7 +32,7 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: AxiosI
     return data;
   });
 
-export const loginUser = createAsyncThunk<string, UserAuth, { extra: AxiosInstance }>(
+export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: AxiosInstance }>(
   Action.LOGIN_USER,
   async ({ email, password }, { extra: api }) => {
     const { data } = await api.post<User>(ApiRoute.Login, { email, password });
