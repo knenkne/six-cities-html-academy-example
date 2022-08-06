@@ -1,17 +1,21 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import type { City, Offer, SortName, User } from '../types/types';
+import type { City, Offer, SortName, User, Comment } from '../types/types';
 
-import { setCity, fetchOffers, setSorting, fetchUserStatus, loginUser } from './action';
+import { setCity, fetchOffers, fetchOffer, fetchNearbyOffers, setSorting, fetchUserStatus, loginUser, fetchComments, postComment } from './action';
 import { AuthorizationStatus, cities, CityLocation } from '../const';
 
 type State = {
   city: City;
   offers: Offer[];
   isOffersLoading: boolean;
+  offer: Offer | null;
+  isOfferLoading: boolean;
   sorting: SortName;
   authorizationStatus: AuthorizationStatus;
   user: User['email'];
+  nearbyOffers: Offer[];
+  comments: Comment[];
 };
 
 const initialState: State = {
@@ -21,9 +25,13 @@ const initialState: State = {
   },
   offers: [],
   isOffersLoading: false,
+  offer: null,
+  isOfferLoading: false,
   sorting: 'Popular',
   authorizationStatus: AuthorizationStatus.NoAuth,
-  user: ''
+  user: '',
+  nearbyOffers: [],
+  comments: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -44,6 +52,22 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
       state.isOffersLoading = false;
     })
+    .addCase(fetchOffer.pending, (state) => {
+      state.isOfferLoading = true;
+    })
+    .addCase(fetchOffer.fulfilled, (state, action) => {
+      state.offer = action.payload;
+      state.isOfferLoading = false;
+    })
+    .addCase(fetchOffer.rejected, (state, action) => {
+      state.isOfferLoading = false;
+    })
+    .addCase(fetchNearbyOffers.fulfilled, (state, action) => {
+      state.nearbyOffers = action.payload;
+    })
+    .addCase(fetchComments.fulfilled, (state, action) => {
+      state.comments = action.payload;
+    })
     .addCase(fetchUserStatus.fulfilled, (state, action) => {
       state.user = action.payload.email;
       state.authorizationStatus = AuthorizationStatus.Auth;
@@ -54,5 +78,8 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(postComment.fulfilled, (state, action) => {
+      state.comments = action.payload;
     });
 });
