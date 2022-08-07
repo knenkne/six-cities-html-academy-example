@@ -56,6 +56,12 @@ export enum Sorting {
   TopRated = 'Top rated first',
 }
 
+export enum StoreSlice {
+  SiteData = 'SITE_DATA',
+  SiteProcess = 'SITE_PROCESS',
+  UserProcess = 'USER_PROCESS',
+}
+
 export enum HttpCode {
   NotFound = 404
 }

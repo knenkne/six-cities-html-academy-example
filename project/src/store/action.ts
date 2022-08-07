@@ -1,8 +1,8 @@
 import type { History } from 'history';
 import type { AxiosInstance, AxiosError } from 'axios';
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import type { CityName, UserAuth, User, Offer, SortName, Comment, CommentAuth } from '../types/types';
+import type { UserAuth, User, Offer, Comment, CommentAuth } from '../types/types';
 import { ApiRoute, AppRoute, HttpCode } from '../const';
 import { Token } from '../utils';
 
@@ -12,19 +12,14 @@ type Extra = {
 }
 
 export const Action = {
-  SET_CITY: 'city/set',
   FETCH_OFFERS: 'offers/fetch',
   FETCH_OFFER: 'offer/fetch',
   FETCH_NEARBY_OFFERS: 'offers/fetch-nearby',
   FETCH_COMMENTS: 'offer/fetch-comments',
   POST_COMMENT: 'offer/post-comment',
-  SET_SORTING: 'sorting/set',
   LOGIN_USER: 'user/login',
   FETCH_USER_STATUS: 'user/fetch-status'
 };
-
-export const setCity = createAction<CityName>(Action.SET_CITY);
-export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: Extra }>(
   Action.FETCH_OFFERS,
