@@ -4,10 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCity } from '../../store/site-process/site-process';
 import City from '../city/city';
 import { cities } from '../../const';
+import { getCity } from '../../store/site-process/selectors';
 
 const CitiesList = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector(getCity);
 
   const handleCityClick = (name: CityName) => {
     dispatch(setCity(name));
