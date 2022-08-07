@@ -3,7 +3,7 @@ import type { SortName } from '../../types/types';
 import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setSorting } from '../../store/action';
+import { setSorting } from '../../store/site-process/site-process';
 import { Comprator } from '../../const';
 import Card from '../card/card';
 import Map from '../map/map';

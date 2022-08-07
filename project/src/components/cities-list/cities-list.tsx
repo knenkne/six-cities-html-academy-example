@@ -1,7 +1,7 @@
 import type { CityName } from '../../types/types';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setCity } from '../../store/action';
+import { setCity } from '../../store/site-process/site-process';
 import City from '../city/city';
 import { cities } from '../../const';
 
