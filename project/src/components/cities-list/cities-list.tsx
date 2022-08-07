@@ -1,7 +1,5 @@
-import { useCallback } from 'react';
-
-
 import type { CityName } from '../../types/types';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCity } from '../../store/site-process/site-process';
 import City from '../city/city';
@@ -12,9 +10,9 @@ const CitiesList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector(getCity);
 
-  const handleCityClick = useCallback((name: CityName) => {
+  const handleCityClick = (name: CityName) => {
     dispatch(setCity(name));
-  }, [dispatch]);
+  };
 
   return (
     <ul className="locations__list tabs__list">

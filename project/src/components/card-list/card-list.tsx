@@ -9,14 +9,14 @@ import Map from '../map/map';
 import SortingList from '../sorting-list/sorting-list';
 import Spinner from '../spinner/spinner';
 import { getCity, getSorting } from '../../store/site-process/selectors';
-import { getIsOffersLoading, selectOffers } from '../../store/site-data/selectors';
+import { getIsOffersLoading, getOffers } from '../../store/site-data/selectors';
 
 const CardList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const activeSorting = useAppSelector(getSorting);
   const activeCity = useAppSelector(getCity);
   const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const offers = useAppSelector(selectOffers);
+  const offers = useAppSelector(getOffers);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
   const handleCardMouseEnter = (id: number) => {

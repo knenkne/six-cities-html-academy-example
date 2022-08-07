@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import type { CityName } from '../../types/types';
 
 type CityProps = {
@@ -22,4 +20,4 @@ const City = ({ name, isActive, onClick }: CityProps): JSX.Element => {
   );
 };
 
-export default memo(City);
+export default City;

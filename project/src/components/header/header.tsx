@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
@@ -52,4 +51,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;
