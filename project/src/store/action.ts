@@ -51,7 +51,7 @@ export const fetchOffer = createAsyncThunk<Offer, Offer['id'], { extra: Extra }>
         history.push(AppRoute.NotFound);
       }
 
-      return Promise.reject(axiosError);
+      return Promise.reject(error);
     }
   });
 

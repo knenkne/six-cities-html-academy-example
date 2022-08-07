@@ -59,7 +59,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offer = action.payload;
       state.isOfferLoading = false;
     })
-    .addCase(fetchOffer.rejected, (state, action) => {
+    .addCase(fetchOffer.rejected, (state) => {
       state.isOfferLoading = false;
     })
     .addCase(fetchNearbyOffers.fulfilled, (state, action) => {
