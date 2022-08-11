@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import type { State } from '../../types/state';
 import type { Offer, Comment } from '../../types/types';
-import { Comprator, StoreSlice } from '../../const';
+import { Comparator, StoreSlice } from '../../const';
 import { getCity, getSorting } from '../site-process/selectors';
 
 
@@ -17,5 +17,5 @@ export const getComments = ({ [StoreSlice.SiteData]: SITE_DATA }: State): Commen
 
 export const selectOffers = createSelector(
   [getOffers, getCity, getSorting],
-  (offers, city, sorting) => offers.filter((offer) => offer.city.name === city.name).sort(Comprator[sorting])
+  (offers, city, sorting) => offers.filter((offer) => offer.city.name === city.name).sort(Comparator[sorting])
 );

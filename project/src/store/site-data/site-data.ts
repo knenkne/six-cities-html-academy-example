@@ -26,6 +26,9 @@ export const siteData = createSlice({
         state.offers = action.payload;
         state.isOffersLoading = false;
       })
+      .addCase(fetchOffers.rejected, (state) => {
+        state.isOffersLoading = false;
+      })
       .addCase(fetchOffer.pending, (state) => {
         state.isOfferLoading = true;
       })

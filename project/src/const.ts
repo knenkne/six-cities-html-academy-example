@@ -66,7 +66,7 @@ export enum HttpCode {
   NotFound = 404
 }
 
-export const Comprator: {
+export const Comparator: {
   [key in SortName]: (a: Offer, b: Offer) => number;
 } = {
   Popular: () => 0,

@@ -17,7 +17,7 @@ const SortingList = ({
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const handleToggleButtonClick = () => {
-    setIsOpened(!isOpened);
+    setIsOpened((prevIsOpened) => !prevIsOpened);
   };
 
   const handleSortItemClick = (name: SortName) => {

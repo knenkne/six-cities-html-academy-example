@@ -31,12 +31,13 @@ const Property = (): JSX.Element | null => {
     }
   }, [params, dispatch]);
 
-  if (!offer) {
-    return null;
-  }
 
   if (isOfferLoading) {
     return <Spinner />;
+  }
+
+  if (!offer) {
+    return null;
   }
 
   const { id, images, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;

@@ -85,7 +85,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const { token } = data;
 
     Token.save(token);
-    history.back();
+    history.push(AppRoute.Root);
 
     return email;
   });
