@@ -11,6 +11,7 @@ import { getStarsWidth } from '../../utils';
 import { CommentAuth } from '../../types/types';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getComments, getIsOfferLoading, getNearbyOffers, getOffer } from '../../store/site-data/selectors';
+import Bookmark from '../../components/bookmark/bookmark';
 
 const Property = (): JSX.Element | null => {
   const params = useParams();
@@ -40,7 +41,7 @@ const Property = (): JSX.Element | null => {
     return null;
   }
 
-  const { id, images, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;
+  const { id, images, isPremium, isFavorite, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;
 
   const locations = nearbyOffers.map(({ id: nearbyId, location: nearbyLocation, }) => ({ id: nearbyId, ...nearbyLocation }));
   locations.push({ id, ...location });
@@ -101,12 +102,7 @@ const Property = (): JSX.Element | null => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <Bookmark id={id} isActive={isFavorite} place="property" />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

@@ -5,7 +5,7 @@ import { fetchUserStatus, loginUser } from '../action';
 import { AuthorizationStatus, StoreSlice } from '../../const';
 
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
   user: ''
 };
 

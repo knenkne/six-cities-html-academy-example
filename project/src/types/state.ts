@@ -9,6 +9,8 @@ export type SiteData = {
     isOffersLoading: boolean;
     offer: Offer | null;
     isOfferLoading: boolean;
+    favoriteOffers: Offer[];
+    isFavoriteOffersLoading: boolean;
     nearbyOffers: Offer[];
     comments: Comment[];
 };

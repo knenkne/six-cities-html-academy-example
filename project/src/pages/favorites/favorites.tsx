@@ -1,18 +1,14 @@
 import Card from '../../components/card/card';
+import Spinner from '../../components/spinner/spinner';
+import { useAppSelector } from '../../hooks';
+import { getFavoriteOffers, getIsFavoriteOffersLoading } from '../../store/site-data/selectors';
 import type { Offer } from '../../types/types';
 
-type FavoritesProps = {
-  offers: Offer[]
-}
+const Favorites = (): JSX.Element => {
+  const isFavoriteOffersLoading = useAppSelector(getIsFavoriteOffersLoading);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
-// [{
-//   city: 'Amsterdam',
-//   offers: []
-// }]
-
-
-const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
-  const groupedOffersByCity = offers.reduce<{ [key: string ]: Offer[] }>((acc, curr) => {
+  const groupedOffersByCity = favoriteOffers.reduce<{ [key: string ]: Offer[] }>((acc, curr) => {
     if (curr.isFavorite) {
       const city = curr.city.name;
 
@@ -26,6 +22,9 @@ const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
     return acc;
   }, {});
 
+  if (isFavoriteOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page">

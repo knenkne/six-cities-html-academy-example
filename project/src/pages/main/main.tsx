@@ -13,9 +13,7 @@ const Main = (): JSX.Element => (
         </section>
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
-          <CardList />
-        </div>
+        <CardList />
       </div>
     </main>
   </div>

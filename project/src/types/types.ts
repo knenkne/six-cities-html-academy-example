@@ -25,6 +25,7 @@ export type User = {
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
 export type CommentAuth = Pick<Comment, 'comment' | 'rating'> & Pick<Offer, 'id'>
+export type FavoriteAuth = Pick<Offer, 'id'> & { status: 1 | 0 }
 
 export type Comment = {
     id: number;
