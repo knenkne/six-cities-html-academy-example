@@ -2,13 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { SiteData } from '../../types/state';
 import { StoreSlice } from '../../const';
-import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../action';
+import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment, postFavorite, fetchFavoriteOffers } from '../action';
 
 const initialState: SiteData = {
   offers: [],
   isOffersLoading: false,
   offer: null,
   isOfferLoading: false,
+  favoriteOffers: [],
+  isFavoriteOffersLoading: false,
   nearbyOffers: [],
   comments: [],
 };
@@ -29,6 +31,16 @@ export const siteData = createSlice({
       .addCase(fetchOffers.rejected, (state) => {
         state.isOffersLoading = false;
       })
+      .addCase(fetchFavoriteOffers.pending, (state) => {
+        state.isFavoriteOffersLoading = true;
+      })
+      .addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
+        state.isFavoriteOffersLoading = false;
+      })
+      .addCase(fetchFavoriteOffers.rejected, (state) => {
+        state.isFavoriteOffersLoading = false;
+      })
       .addCase(fetchOffer.pending, (state) => {
         state.isOfferLoading = true;
       })
@@ -47,6 +59,20 @@ export const siteData = createSlice({
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments = action.payload;
+      })
+      .addCase(postFavorite.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        state.offers = state.offers.map((offer) => offer.id === updatedOffer.id ? updatedOffer : offer);
+
+        if (state.offer && state.offer.id === updatedOffer.id) {
+          state.offer = updatedOffer;
+        }
+
+        if (updatedOffer.isFavorite) {
+          state.favoriteOffers = state.favoriteOffers.concat(updatedOffer);
+        } else {
+          state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
+        }
       });
   }
 });
