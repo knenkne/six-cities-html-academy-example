@@ -39,8 +39,8 @@ const CardList = (): JSX.Element => {
   }
 
   return (
-    <div className={`cities__places-container container${isEmpty ? ' cities__places-container' : ''}`}>
-      {isEmpty ? <CardListEmpty /> : (
+    <div className={`cities__places-container container${isEmpty ? ' cities__places-container page__main--index-empty' : ''}`}>
+      {isEmpty ? <CardListEmpty city={activeCity.name} /> : (
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
