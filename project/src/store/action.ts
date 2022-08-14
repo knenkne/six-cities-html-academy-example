@@ -79,20 +79,20 @@ export const fetchComments = createAsyncThunk<Comment[], Offer['id'], { extra: E
     return data;
   });
 
-export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: Extra }>(
+export const fetchUserStatus = createAsyncThunk<UserAuth['email'], undefined, { extra: Extra }>(
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
     const { data } = await api.get<User>(ApiRoute.Login);
 
-    return data;
+    return data.email;
   });
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: Extra }>(
   Action.LOGIN_USER,
   async ({ email, password }, { extra }) => {
     const { api, history } = extra;
-    const { data } = await api.post<User>(ApiRoute.Login, { email, password });
+    const { data } = await api.post<User & { token: string }>(ApiRoute.Login, { email, password });
     const { token } = data;
 
     Token.save(token);
