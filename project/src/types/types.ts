@@ -20,7 +20,6 @@ export type User = {
     avatarUrl: string;
     isPro: boolean;
     email: string;
-    token: string;
 };
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
@@ -48,8 +47,8 @@ export type Offer = {
     type: 'apartment' | 'room' | 'house' | 'hotel';
     bedrooms: number;
     description: string;
-    goods: [string];
+    goods: string[];
     host: User;
-    images: [string];
+    images: string[];
     maxAdults: number;
 };
