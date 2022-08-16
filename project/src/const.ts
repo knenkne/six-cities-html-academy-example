@@ -29,6 +29,10 @@ export const MAX_PERCENT_STARS_WIDTH = 100;
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
+export const MAX_COMMENTS = 10;
+export const MIN_COMMENT_LENGTH = 50;
+export const MAX_COMMENT_LENGTH = 300;
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',

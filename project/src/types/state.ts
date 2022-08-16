@@ -13,6 +13,7 @@ export type SiteData = {
     isFavoriteOffersLoading: boolean;
     nearbyOffers: Offer[];
     comments: Comment[];
+    isCommentPending: boolean;
 };
 
 export type SiteProcess = {

@@ -10,7 +10,7 @@ import Spinner from '../../components/spinner/spinner';
 import { getStarsWidth } from '../../utils';
 import { CommentAuth } from '../../types/types';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { getComments, getIsOfferLoading, getNearbyOffers, getOffer } from '../../store/site-data/selectors';
+import { getIsOfferLoading, getNearbyOffers, getOffer, selectComments, getIsCommentPending } from '../../store/site-data/selectors';
 import Bookmark from '../../components/bookmark/bookmark';
 
 const Property = (): JSX.Element | null => {
@@ -20,7 +20,8 @@ const Property = (): JSX.Element | null => {
   const isOfferLoading = useAppSelector(getIsOfferLoading);
   const offer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
-  const comments = useAppSelector(getComments);
+  const comments = useAppSelector(selectComments);
+  const isCommentPending = useAppSelector(getIsCommentPending);
 
   useEffect(() => {
     const { id } = params;
@@ -155,7 +156,7 @@ const Property = (): JSX.Element | null => {
                   </p>
                 </div>
               </div>
-              <ReviewList reviews={comments} authorizationStatus={authorizationStatus} onSubmit={onFormSubmit} />
+              <ReviewList reviews={comments} authorizationStatus={authorizationStatus} onSubmit={onFormSubmit} isSubmiting={isCommentPending} />
             </div>
           </div>
           <Map city={city} locations={locations} activeOffer={id} place="property" />

@@ -13,6 +13,7 @@ const initialState: SiteData = {
   isFavoriteOffersLoading: false,
   nearbyOffers: [],
   comments: [],
+  isCommentPending: false,
 };
 
 export const siteData = createSlice({
@@ -57,8 +58,15 @@ export const siteData = createSlice({
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
       })
+      .addCase(postComment.pending, (state, action) => {
+        state.isCommentPending = true;
+      })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments = action.payload;
+        state.isCommentPending = false;
+      })
+      .addCase(postComment.rejected, (state, action) => {
+        state.isCommentPending = false;
       })
       .addCase(postFavorite.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
