@@ -1,8 +1,12 @@
-import type { FormEvent } from 'react';
-import type { UserAuth } from '../../types/types';
+import { Link } from 'react-router-dom';
+import type { FormEvent, MouseEvent } from 'react';
+import type { CityName, UserAuth } from '../../types/types';
 
 import { useAppDispatch } from '../../hooks';
 import { loginUser } from '../../store/action';
+import { getRandomElement } from '../../utils';
+import { AppRoute, cities } from '../../const';
+import { setCity } from '../../store/site-process/site-process';
 
 const Login = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -16,6 +20,12 @@ const Login = (): JSX.Element => {
 
     dispatch(loginUser(data));
   };
+
+  const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    const cityName = e.currentTarget.textContent as CityName;
+    dispatch(setCity(cityName));
+  };
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -72,9 +82,9 @@ const Login = (): JSX.Element => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+              <Link className="locations__item-link" onClick={handleLinkClick} to={AppRoute.Root}>
+                <span>{getRandomElement<CityName>(cities)}</span>
+              </Link>
             </div>
           </section>
         </div>

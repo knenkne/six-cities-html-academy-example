@@ -9,6 +9,8 @@ export const formatDate = (date: string) => {
 export const getStarsWidth = (rating: number) =>
   `${(MAX_PERCENT_STARS_WIDTH * rating) / STARS_COUNT}%`;
 
+export const getRandomElement = <T>(array: readonly T[]): T => array[Math.floor(Math.random() * array.length)];
+
 export class Token {
   private static _name = 'six-cities-auth-token';
 
