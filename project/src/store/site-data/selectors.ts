@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import type { State } from '../../types/state';
 import type { Offer, Comment } from '../../types/types';
-import { Comparator, MAX_COMMENTS, StoreSlice } from '../../const';
+import { Comparator, MAX_COMMENTS, StoreSlice, SubmitStatus } from '../../const';
 import { getCity, getSorting } from '../site-process/selectors';
 
 export const getIsOffersLoading = ({ [StoreSlice.SiteData]: SITE_DATA }: State): boolean => SITE_DATA.isOffersLoading;
@@ -16,7 +16,7 @@ export const getOffer = ({ [StoreSlice.SiteData]: SITE_DATA }: State): Offer | n
 
 export const getNearbyOffers = ({ [StoreSlice.SiteData]: SITE_DATA }: State): Offer[] => SITE_DATA.nearbyOffers;
 export const getComments = ({ [StoreSlice.SiteData]: SITE_DATA }: State): Comment[] => SITE_DATA.comments;
-export const getIsCommentPending = ({ [StoreSlice.SiteData]: SITE_DATA }: State): boolean => SITE_DATA.isCommentPending;
+export const getCommentStatus = ({ [StoreSlice.SiteData]: SITE_DATA }: State): SubmitStatus => SITE_DATA.commentStatus;
 
 export const selectOffers = createSelector(
   [getOffers, getCity, getSorting],

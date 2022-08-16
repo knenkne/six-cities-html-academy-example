@@ -69,7 +69,14 @@ export enum StoreSlice {
 
 export enum HttpCode {
   NotFound = 404,
-  NoAuth = 401
+  NoAuth = 401,
+}
+
+export enum SubmitStatus {
+  Still = 'STILL',
+  Pending = 'PENDING',
+  Fullfilled = 'FULLFILLED',
+  Rejected = 'REJECTED'
 }
 
 export const Comparator: {

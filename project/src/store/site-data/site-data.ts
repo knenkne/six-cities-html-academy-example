@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { SiteData } from '../../types/state';
-import { StoreSlice } from '../../const';
+import { StoreSlice, SubmitStatus } from '../../const';
 import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment, postFavorite, fetchFavoriteOffers } from '../action';
 
 const initialState: SiteData = {
@@ -13,7 +13,7 @@ const initialState: SiteData = {
   isFavoriteOffersLoading: false,
   nearbyOffers: [],
   comments: [],
-  isCommentPending: false,
+  commentStatus: SubmitStatus.Still,
 };
 
 export const siteData = createSlice({
@@ -58,15 +58,15 @@ export const siteData = createSlice({
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
       })
-      .addCase(postComment.pending, (state, action) => {
-        state.isCommentPending = true;
+      .addCase(postComment.pending, (state) => {
+        state.commentStatus = SubmitStatus.Pending;
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments = action.payload;
-        state.isCommentPending = false;
+        state.commentStatus = SubmitStatus.Fullfilled;
       })
-      .addCase(postComment.rejected, (state, action) => {
-        state.isCommentPending = false;
+      .addCase(postComment.rejected, (state) => {
+        state.commentStatus = SubmitStatus.Rejected;
       })
       .addCase(postFavorite.fulfilled, (state, action) => {
         const updatedOffer = action.payload;

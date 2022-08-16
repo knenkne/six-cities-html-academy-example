@@ -1,4 +1,5 @@
 import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';

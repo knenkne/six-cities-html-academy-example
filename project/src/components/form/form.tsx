@@ -2,14 +2,14 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { Fragment, useState, useEffect } from 'react';
 
 import type { CommentAuth } from '../../types/types';
-import { STARS_COUNT, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../../const';
+import { STARS_COUNT, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH, SubmitStatus } from '../../const';
 
 type FormProps = {
   onSubmit: (formData: Omit<CommentAuth, 'id'>) => void;
-  isSubmiting: boolean;
+  submitStatus: SubmitStatus;
 }
 
-const Form = ({ onSubmit, isSubmiting }: FormProps) => {
+const Form = ({ onSubmit, submitStatus }: FormProps) => {
   const [text, setText] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
 
@@ -31,11 +31,12 @@ const Form = ({ onSubmit, isSubmiting }: FormProps) => {
   };
 
   useEffect(() => {
-    if (!isSubmiting) {
+    if (submitStatus === SubmitStatus.Fullfilled) {
       setText('');
       setRating(0);
     }
-  }, [isSubmiting]);
+
+  }, [submitStatus]);
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
@@ -53,7 +54,7 @@ const Form = ({ onSubmit, isSubmiting }: FormProps) => {
               type="radio"
               checked={STARS_COUNT - i === rating}
               onChange={handleInputChange}
-              disabled={isSubmiting}
+              disabled={submitStatus === SubmitStatus.Pending}
             />
             <label
               htmlFor={`${STARS_COUNT - i}-stars`}
@@ -73,7 +74,7 @@ const Form = ({ onSubmit, isSubmiting }: FormProps) => {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={text}
         onChange={handleTextareaChange}
-        disabled={isSubmiting}
+        disabled={submitStatus === SubmitStatus.Pending}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

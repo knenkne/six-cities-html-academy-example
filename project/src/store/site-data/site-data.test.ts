@@ -1,7 +1,7 @@
 import type { Offer, User, Comment } from '../../types/types';
 
 import { siteData } from './site-data';
-import { cities, CityLocation } from '../../const';
+import { cities, CityLocation, SubmitStatus } from '../../const';
 import { fetchComments, fetchFavoriteOffers, fetchNearbyOffers, fetchOffer, fetchOffers, postComment, postFavorite } from '../action';
 
 const user: User = {
@@ -46,7 +46,7 @@ const comments: Comment[] = [
   }
 ];
 
-describe('Reducer: userProcess', () => {
+describe('Reducer: siteData', () => {
   it('without additional parameters should return initial state', () => {
     expect(siteData.reducer(void 0, { type: 'UNKNOWN_ACTION' }))
       .toEqual({
@@ -58,7 +58,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -72,7 +72,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: fetchOffers.pending.type }))
@@ -85,7 +85,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchOffers.fulfilled.type, payload: offers }))
@@ -98,7 +98,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchOffers.rejected.type }))
@@ -111,7 +111,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -125,7 +125,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: fetchOffer.pending.type }))
@@ -138,7 +138,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchOffer.fulfilled.type, payload: offers[0] }))
@@ -151,7 +151,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchOffer.rejected.type }))
@@ -164,7 +164,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -178,7 +178,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: fetchFavoriteOffers.pending.type }))
@@ -191,7 +191,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: true,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchFavoriteOffers.fulfilled.type, payload: offers }))
@@ -204,7 +204,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     expect(siteData.reducer(state, { type: fetchFavoriteOffers.rejected.type }))
@@ -217,7 +217,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -231,7 +231,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: fetchNearbyOffers.fulfilled.type, payload: offers }))
@@ -244,7 +244,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: offers,
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -258,7 +258,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: fetchComments.fulfilled.type, payload: comments }))
@@ -271,7 +271,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments,
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 
@@ -286,10 +286,10 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
-    expect(siteData.reducer(state, { type: postComment.pending.type, payload: comments }))
+    expect(siteData.reducer(state, { type: postComment.pending.type }))
       .toEqual({
         offers: [],
         isOffersLoading: false,
@@ -299,10 +299,10 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: true,
+        commentStatus: SubmitStatus.Pending,
       });
 
-    expect(siteData.reducer(state, { type: postComment.fulfilled.type }))
+    expect(siteData.reducer(state, { type: postComment.fulfilled.type, payload: comments }))
       .toEqual({
         offers: [],
         isOffersLoading: false,
@@ -312,7 +312,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments,
-        isCommentPending: true,
+        commentStatus: SubmitStatus.Fullfilled,
       });
 
     expect(siteData.reducer(state, { type: postComment.rejected.type }))
@@ -325,7 +325,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Rejected,
       });
   });
 
@@ -339,7 +339,7 @@ describe('Reducer: userProcess', () => {
       isFavoriteOffersLoading: false,
       nearbyOffers: [],
       comments: [],
-      isCommentPending: false,
+      commentStatus: SubmitStatus.Still,
     };
 
     expect(siteData.reducer(state, { type: postFavorite.fulfilled.type, payload: {...offers[0], isFavorite: true } }))
@@ -352,7 +352,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
 
     state.offers = [{...offers[0], isFavorite: true }];
@@ -368,7 +368,7 @@ describe('Reducer: userProcess', () => {
         isFavoriteOffersLoading: false,
         nearbyOffers: [],
         comments: [],
-        isCommentPending: false,
+        commentStatus: SubmitStatus.Still,
       });
   });
 });

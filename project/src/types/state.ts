@@ -1,7 +1,7 @@
 import store from '../store';
 
 import type { Offer, Comment, City, SortName, User } from './types';
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus, SubmitStatus } from '../const';
 
 
 export type SiteData = {
@@ -13,7 +13,7 @@ export type SiteData = {
     isFavoriteOffersLoading: boolean;
     nearbyOffers: Offer[];
     comments: Comment[];
-    isCommentPending: boolean;
+    commentStatus: SubmitStatus;
 };
 
 export type SiteProcess = {
