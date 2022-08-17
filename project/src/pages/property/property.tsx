@@ -7,10 +7,10 @@ import Card from '../../components/card/card';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/action';
 import Spinner from '../../components/spinner/spinner';
-import { getStarsWidth } from '../../utils';
+import { capitalize, getStarsWidth, pluralize } from '../../utils';
 import { CommentAuth } from '../../types/types';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { getComments, getIsOfferLoading, getNearbyOffers, getOffer } from '../../store/site-data/selectors';
+import { getIsOfferLoading, getNearbyOffers, getOffer, selectComments, getCommentStatus } from '../../store/site-data/selectors';
 import Bookmark from '../../components/bookmark/bookmark';
 
 const Property = (): JSX.Element | null => {
@@ -20,7 +20,8 @@ const Property = (): JSX.Element | null => {
   const isOfferLoading = useAppSelector(getIsOfferLoading);
   const offer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
-  const comments = useAppSelector(getComments);
+  const comments = useAppSelector(selectComments);
+  const commentStatus = useAppSelector(getCommentStatus);
 
   useEffect(() => {
     const { id } = params;
@@ -52,34 +53,6 @@ const Property = (): JSX.Element | null => {
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-              </a>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -113,13 +86,13 @@ const Property = (): JSX.Element | null => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type}
+                  {capitalize(type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {bedrooms} {pluralize('Bedroom', bedrooms)}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {maxAdults} {pluralize('adult', maxAdults)}
                 </li>
               </ul>
               <div className="property__price">
@@ -155,7 +128,7 @@ const Property = (): JSX.Element | null => {
                   </p>
                 </div>
               </div>
-              <ReviewList reviews={comments} authorizationStatus={authorizationStatus} onSubmit={onFormSubmit} />
+              <ReviewList reviews={comments} authorizationStatus={authorizationStatus} onSubmit={onFormSubmit} submitStatus={commentStatus} />
             </div>
           </div>
           <Map city={city} locations={locations} activeOffer={id} place="property" />

@@ -8,6 +8,7 @@ import App from './app';
 import history from '../../history';
 import { ApiRoute, AppRoute, AuthorizationStatus, cities, CityLocation, Sorting, StoreSlice } from '../../const';
 import { createAPI } from '../../api';
+import { capitalize } from '../../utils';
 
 const user = {
   id: 1,
@@ -50,7 +51,6 @@ const comments = [
     user
   }
 ];
-
 
 const api = createAPI();
 const mockAPI = new MockAdapter(api);
@@ -108,7 +108,22 @@ describe('Application Routing', () => {
 
   });
 
+  it('should render "Favorites" when user navigates to "/favorites"', () => {
+    history.push(`${AppRoute.Favorites}`);
+
+    render(fakeApp);
+
+    expect(screen.getByText(offers[0].title)).toBeInTheDocument();
+    expect(screen.getByText(capitalize(offers[0].type))).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveClass('place-card__bookmark-button--active');
+    expect(screen.getByRole('img', { name: offers[0].title })).toHaveAttribute('src', offers[0].previewImage);
+  });
+
   it('should render "Login" when user navigates to "/login"', () => {
+    // logout
+    store.getState()[StoreSlice.UserProcess].authorizationStatus = AuthorizationStatus.NoAuth;
+    store.getState()[StoreSlice.UserProcess].user = '';
+
     history.push(AppRoute.Login);
 
     render(fakeApp);
@@ -117,17 +132,6 @@ describe('Application Routing', () => {
     expect(screen.getByLabelText('E-mail')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
-  it('should render "Favorites" when user navigates to "/favorites"', () => {
-    history.push(`${AppRoute.Favorites}`);
-
-    render(fakeApp);
-
-    expect(screen.getByText(offers[0].title)).toBeInTheDocument();
-    expect(screen.getByText(offers[0].type)).toBeInTheDocument();
-    expect(screen.getByRole('button')).toHaveClass('place-card__bookmark-button--active');
-    expect(screen.getByRole('img', { name: 'Place' })).toHaveAttribute('src', offers[0].previewImage);
   });
 
   it('should render "NotFound" when user navigates to "/not-exists"', () => {
@@ -145,6 +149,6 @@ describe('Application Routing', () => {
 
     expect(screen.getByText(offers[0].title)).toBeInTheDocument();
     expect(screen.getByText(offers[0].description)).toBeInTheDocument();
-    expect(screen.getByText(offers[0].type)).toBeInTheDocument();
+    expect(screen.getByText(capitalize(offers[0].type))).toBeInTheDocument();
   });
 });

@@ -32,7 +32,7 @@ describe('Component: PrivateRouter', () => {
             <Route
               path='/private'
               element={
-                <PrivateRoute>
+                <PrivateRoute restrictedFor={AuthorizationStatus.NoAuth} redirectTo={AppRoute.Login}>
                   <h1>Private Route</h1>
                 </PrivateRoute>
               }
@@ -64,7 +64,7 @@ describe('Component: PrivateRouter', () => {
             <Route
               path='/private'
               element={
-                <PrivateRoute>
+                <PrivateRoute restrictedFor={AuthorizationStatus.NoAuth} redirectTo={AppRoute.Login}>
                   <h1>Private Route</h1>
                 </PrivateRoute>
               }
