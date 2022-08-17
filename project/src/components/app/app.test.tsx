@@ -8,6 +8,7 @@ import App from './app';
 import history from '../../history';
 import { ApiRoute, AppRoute, AuthorizationStatus, cities, CityLocation, Sorting, StoreSlice } from '../../const';
 import { createAPI } from '../../api';
+import { logout } from '../../store/user-process/user-process';
 
 const user = {
   id: 1,
@@ -108,17 +109,6 @@ describe('Application Routing', () => {
 
   });
 
-  it('should render "Login" when user navigates to "/login"', () => {
-    history.push(AppRoute.Login);
-
-    render(fakeApp);
-
-    expect(screen.getByRole('heading')).toHaveTextContent('Sign in');
-    expect(screen.getByLabelText('E-mail')).toBeInTheDocument();
-    expect(screen.getByLabelText('Password')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
   it('should render "Favorites" when user navigates to "/favorites"', () => {
     history.push(`${AppRoute.Favorites}`);
 
@@ -128,6 +118,21 @@ describe('Application Routing', () => {
     expect(screen.getByText(offers[0].type)).toBeInTheDocument();
     expect(screen.getByRole('button')).toHaveClass('place-card__bookmark-button--active');
     expect(screen.getByRole('img', { name: 'Place' })).toHaveAttribute('src', offers[0].previewImage);
+  });
+
+  it('should render "Login" when user navigates to "/login"', () => {
+    // logout
+    store.getState()[StoreSlice.UserProcess].authorizationStatus = AuthorizationStatus.NoAuth;
+    store.getState()[StoreSlice.UserProcess].user = '';
+
+    history.push(AppRoute.Login);
+
+    render(fakeApp);
+
+    expect(screen.getByRole('heading')).toHaveTextContent('Sign in');
+    expect(screen.getByLabelText('E-mail')).toBeInTheDocument();
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('should render "NotFound" when user navigates to "/not-exists"', () => {
