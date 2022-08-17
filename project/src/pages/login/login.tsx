@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
 import type { FormEvent, MouseEvent } from 'react';
-import type { CityName, UserAuth } from '../../types/types';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import type { CityName, UserAuth } from '../../types/types';
 import { useAppDispatch } from '../../hooks';
 import { loginUser } from '../../store/action';
 import { getRandomElement } from '../../utils';
-import { AppRoute, cities } from '../../const';
+import { VALID_PASSWORD_REGEXP, INVALID_PASSWORD_MESSAGE, AppRoute, cities } from '../../const';
 import { setCity } from '../../store/site-process/site-process';
 
 const Login = (): JSX.Element => {
@@ -17,6 +18,11 @@ const Login = (): JSX.Element => {
 
     const formData = new FormData(form) as Iterable<[UserAuth]>;
     const data = Object.fromEntries(formData);
+
+    if (!data.password.match(VALID_PASSWORD_REGEXP)) {
+      toast.warn(INVALID_PASSWORD_MESSAGE);
+      return;
+    }
 
     dispatch(loginUser(data));
   };

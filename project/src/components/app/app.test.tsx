@@ -8,7 +8,7 @@ import App from './app';
 import history from '../../history';
 import { ApiRoute, AppRoute, AuthorizationStatus, cities, CityLocation, Sorting, StoreSlice } from '../../const';
 import { createAPI } from '../../api';
-import { logout } from '../../store/user-process/user-process';
+import { capitalize } from '../../utils';
 
 const user = {
   id: 1,
@@ -51,7 +51,6 @@ const comments = [
     user
   }
 ];
-
 
 const api = createAPI();
 const mockAPI = new MockAdapter(api);
@@ -115,9 +114,9 @@ describe('Application Routing', () => {
     render(fakeApp);
 
     expect(screen.getByText(offers[0].title)).toBeInTheDocument();
-    expect(screen.getByText(offers[0].type)).toBeInTheDocument();
+    expect(screen.getByText(capitalize(offers[0].type))).toBeInTheDocument();
     expect(screen.getByRole('button')).toHaveClass('place-card__bookmark-button--active');
-    expect(screen.getByRole('img', { name: 'Place' })).toHaveAttribute('src', offers[0].previewImage);
+    expect(screen.getByRole('img', { name: offers[0].title })).toHaveAttribute('src', offers[0].previewImage);
   });
 
   it('should render "Login" when user navigates to "/login"', () => {
@@ -150,6 +149,6 @@ describe('Application Routing', () => {
 
     expect(screen.getByText(offers[0].title)).toBeInTheDocument();
     expect(screen.getByText(offers[0].description)).toBeInTheDocument();
-    expect(screen.getByText(offers[0].type)).toBeInTheDocument();
+    expect(screen.getByText(capitalize(offers[0].type))).toBeInTheDocument();
   });
 });

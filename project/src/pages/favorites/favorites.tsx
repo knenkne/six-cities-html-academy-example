@@ -37,9 +37,9 @@ const Favorites = (): JSX.Element => {
                 <li className="favorites__locations-items" key={city}>
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <a className="locations__item-link" href="#">
+                      <div className="locations__item-link">
                         <span>{city}</span>
-                      </a>
+                      </div>
                     </div>
                   </div>
                   <div className="favorites__places">

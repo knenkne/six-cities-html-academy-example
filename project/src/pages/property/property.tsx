@@ -7,7 +7,7 @@ import Card from '../../components/card/card';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/action';
 import Spinner from '../../components/spinner/spinner';
-import { getStarsWidth } from '../../utils';
+import { capitalize, getStarsWidth, pluralize } from '../../utils';
 import { CommentAuth } from '../../types/types';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getIsOfferLoading, getNearbyOffers, getOffer, selectComments, getCommentStatus } from '../../store/site-data/selectors';
@@ -86,13 +86,13 @@ const Property = (): JSX.Element | null => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type}
+                  {capitalize(type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {bedrooms} {pluralize('Bedroom', bedrooms)}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {maxAdults} {pluralize('adult', maxAdults)}
                 </li>
               </ul>
               <div className="property__price">

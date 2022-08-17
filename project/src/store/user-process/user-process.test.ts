@@ -1,4 +1,4 @@
-import { userProcess } from './user-process';
+import { logout, userProcess } from './user-process';
 import { AuthorizationStatus } from '../../const';
 import { fetchUserStatus, loginUser } from '../action';
 
@@ -42,6 +42,19 @@ describe('Reducer: userProcess', () => {
       .toEqual({
         authorizationStatus: AuthorizationStatus.Auth,
         user: email
+      });
+  });
+
+  it('should logout user', () => {
+    const state = {
+      authorizationStatus: AuthorizationStatus.Auth,
+      user: email
+    };
+
+    expect(userProcess.reducer(state, logout()))
+      .toEqual({
+        authorizationStatus: AuthorizationStatus.NoAuth,
+        user: ''
       });
   });
 });
