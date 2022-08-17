@@ -12,6 +12,7 @@ type FormProps = {
 const Form = ({ onSubmit, submitStatus }: FormProps) => {
   const [text, setText] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
+  const isSubmiting = submitStatus === SubmitStatus.Pending;
 
   const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -31,12 +32,12 @@ const Form = ({ onSubmit, submitStatus }: FormProps) => {
   };
 
   useEffect(() => {
-    if (submitStatus === SubmitStatus.Fullfilled) {
+    if (isSubmiting) {
       setText('');
       setRating(0);
     }
 
-  }, [submitStatus]);
+  }, [isSubmiting]);
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
@@ -54,7 +55,7 @@ const Form = ({ onSubmit, submitStatus }: FormProps) => {
               type="radio"
               checked={STARS_COUNT - i === rating}
               onChange={handleInputChange}
-              disabled={submitStatus === SubmitStatus.Pending}
+              disabled={isSubmiting}
             />
             <label
               htmlFor={`${STARS_COUNT - i}-stars`}
@@ -74,7 +75,7 @@ const Form = ({ onSubmit, submitStatus }: FormProps) => {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={text}
         onChange={handleTextareaChange}
-        disabled={submitStatus === SubmitStatus.Pending}
+        disabled={isSubmiting}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -83,7 +84,7 @@ const Form = ({ onSubmit, submitStatus }: FormProps) => {
             between <b className="reviews__text-amount">{MIN_COMMENT_LENGTH} and {MAX_COMMENT_LENGTH} characters</b>.
         </p>
         <button
-          disabled={!rating || (text.length < MIN_COMMENT_LENGTH || text.length > MAX_COMMENT_LENGTH)}
+          disabled={isSubmiting || !rating || (text.length < MIN_COMMENT_LENGTH || text.length > MAX_COMMENT_LENGTH)}
           className="reviews__submit form__submit button"
           type="submit"
         >

@@ -6,13 +6,6 @@ import { getFavoriteOffers } from '../../store/site-data/selectors';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
 import { logout } from '../../store/user-process/user-process';
 
-const RootClassName: Record<AppRoute, string> = {
-  [AppRoute.Root]: 'page--gray page--main',
-  [AppRoute.Login]: 'page--gray page--login',
-  [AppRoute.Favorites]: '',
-  [AppRoute.Property]: '',
-  [AppRoute.NotFound]: '',
-};
 
 const Header = () => {
   const { pathname } = useLocation() as { pathname: AppRoute };
@@ -25,6 +18,14 @@ const Header = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(logout());
     }
+  };
+
+  const RootClassName: Record<AppRoute, string> = {
+    [AppRoute.Root]: 'page--gray page--main',
+    [AppRoute.Login]: 'page--gray page--login',
+    [AppRoute.Favorites]: favoriteOffers.length === 0 ? 'page--favorites-empty' : '',
+    [AppRoute.Property]: '',
+    [AppRoute.NotFound]: '',
   };
 
   return (
