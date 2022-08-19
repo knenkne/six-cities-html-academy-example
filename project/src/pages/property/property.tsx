@@ -9,14 +9,14 @@ import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../..
 import Spinner from '../../components/spinner/spinner';
 import { capitalize, getStarsWidth, pluralize } from '../../utils';
 import { CommentAuth } from '../../types/types';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getIsAuthorized } from '../../store/user-process/selectors';
 import { getIsOfferLoading, getNearbyOffers, getOffer, selectComments, getCommentStatus } from '../../store/site-data/selectors';
 import Bookmark from '../../components/bookmark/bookmark';
 
 const Property = (): JSX.Element | null => {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthorized = useAppSelector(getIsAuthorized);
   const isOfferLoading = useAppSelector(getIsOfferLoading);
   const offer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
@@ -128,7 +128,7 @@ const Property = (): JSX.Element | null => {
                   </p>
                 </div>
               </div>
-              <ReviewList reviews={comments} authorizationStatus={authorizationStatus} onSubmit={onFormSubmit} submitStatus={commentStatus} />
+              <ReviewList reviews={comments} isAuthorized={isAuthorized} onSubmit={onFormSubmit} submitStatus={commentStatus} />
             </div>
           </div>
           <Map city={city} locations={locations} activeOffer={id} place="property" />
@@ -137,7 +137,7 @@ const Property = (): JSX.Element | null => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer) => <Card key={nearbyOffer.id} {...nearbyOffer} place="near-places" />)}
+              {nearbyOffers.map((nearbyOffer) => <Card key={nearbyOffer.id} {...nearbyOffer} classPrefix="near-places" />)}
             </div>
           </section>
         </div>

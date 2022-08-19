@@ -33,8 +33,8 @@ const App = (): JSX.Element => (
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<NotFound />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </HistoryRouter>
 );

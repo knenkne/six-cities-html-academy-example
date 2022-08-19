@@ -33,7 +33,7 @@ export const MAX_COMMENTS = 10;
 export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;
 
-export const INVALID_PASSWORD_MESSAGE = 'Пароль должен состоять минимум из одной буквы и цифры';
+export const INVALID_PASSWORD_MESSAGE = 'Password should contains at least one letter and digit';
 export const VALID_PASSWORD_REGEXP = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
 
 export enum AppRoute {
@@ -47,6 +47,7 @@ export enum AppRoute {
 export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
+  Logout = '/logout',
   Comments = '/comments',
   Favorite = '/favorite',
 }

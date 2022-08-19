@@ -20,6 +20,7 @@ export const Action = {
   POST_COMMENT: 'offer/post-comment',
   POST_FAVORITE: 'offer/post-favorite',
   LOGIN_USER: 'user/login',
+  LOGOUT_USER: 'user/logout',
   FETCH_USER_STATUS: 'user/fetch-status'
 };
 
@@ -83,9 +84,20 @@ export const fetchUserStatus = createAsyncThunk<UserAuth['email'], undefined, { 
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<User>(ApiRoute.Login);
 
-    return data.email;
+    try {
+      const { data } = await api.get<User>(ApiRoute.Login);
+
+      return data.email;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response?.status === HttpCode.NoAuth) {
+        Token.drop();
+      }
+
+      return Promise.reject(error);
+    }
   });
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: Extra }>(
@@ -100,6 +112,16 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
 
     return email;
   });
+
+export const logoutUser = createAsyncThunk<void, undefined, { extra: Extra }>(
+  Action.LOGOUT_USER,
+  async (_, { extra }) => {
+    const { api } = extra;
+    await api.delete(ApiRoute.Logout);
+
+    Token.drop();
+  });
+
 
 export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Extra }>(
   Action.POST_COMMENT,

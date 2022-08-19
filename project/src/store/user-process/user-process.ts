@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { UserProcess } from '../../types/state';
-import { fetchUserStatus, loginUser } from '../action';
+import { fetchUserStatus, loginUser, logoutUser } from '../action';
 import { AuthorizationStatus, StoreSlice } from '../../const';
-import { Token } from '../../utils';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -13,14 +12,7 @@ const initialState: UserProcess = {
 export const userProcess = createSlice({
   name: StoreSlice.UserProcess,
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.authorizationStatus = AuthorizationStatus.NoAuth;
-      state.user = '';
-
-      Token.drop();
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(fetchUserStatus.fulfilled, (state, action) => {
@@ -28,13 +20,16 @@ export const userProcess = createSlice({
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(fetchUserStatus.rejected, (state) => {
+        state.user = '';
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.authorizationStatus = AuthorizationStatus.Auth;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = '';
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
       });
   }
 });
-
-export const { logout } = userProcess.actions;

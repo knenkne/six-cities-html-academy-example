@@ -32,12 +32,12 @@ const Form = ({ onSubmit, submitStatus }: FormProps) => {
   };
 
   useEffect(() => {
-    if (isSubmiting) {
+    if (submitStatus === SubmitStatus.Fullfilled) {
       setText('');
       setRating(0);
     }
 
-  }, [isSubmiting]);
+  }, [submitStatus]);
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>

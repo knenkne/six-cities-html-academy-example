@@ -1,4 +1,4 @@
-import { AuthorizationStatus, SubmitStatus } from '../../const';
+import { SubmitStatus } from '../../const';
 import type { CommentAuth, Comment } from '../../types/types';
 
 import Form from '../form/form';
@@ -6,12 +6,12 @@ import Review from '../review/review';
 
 type ReviewListProps = {
     reviews: Comment[];
-    authorizationStatus: AuthorizationStatus;
+    isAuthorized: boolean;
     onSubmit: (formData: Omit<CommentAuth, 'id'>) => void;
     submitStatus: SubmitStatus;
 }
 
-const ReviewList = ({ reviews, authorizationStatus, onSubmit, submitStatus }: ReviewListProps) => (
+const ReviewList = ({ reviews, isAuthorized, onSubmit, submitStatus }: ReviewListProps) => (
   <section className="property__reviews reviews">
     {reviews.length > 0 && (
       <>
@@ -24,7 +24,7 @@ const ReviewList = ({ reviews, authorizationStatus, onSubmit, submitStatus }: Re
           ))}
         </ul>
       </>)}
-    {authorizationStatus === AuthorizationStatus.Auth && <Form onSubmit={onSubmit} submitStatus={submitStatus} />}
+    {isAuthorized && <Form onSubmit={onSubmit} submitStatus={submitStatus} />}
   </section>
 );
 
